@@ -1,0 +1,17 @@
+https://reqres.in/api/users
+
+###
+
+GET https://reqres.in/api/users?page=1&limit=6
+
+###
+
+POST https://reqres.in/api/users HTTP/1.1
+content-type: application/json
+
+{
+  "email": "joyce.soares@reqres.in",
+  "first_name": "Joyce",
+  "last_name": "Soares",
+  "avatar": "https://reqres.in/img/faces/7-image.jpg"
+}

@@ -1,4 +1,4 @@
-/* body {
+body {
   height: 100%;
   margin: 0;
   width: 100%;
@@ -16,7 +16,6 @@
 }
 
 input {
-  color: rgb(11, 69, 151);
   font-weight: 900;
   margin: 0;
   text-align: center;
@@ -37,14 +36,19 @@ input[type="number"] {
 p {
   font-size: 1.5em;
   font-weight: bold;
-  margin-right: 172px;
+  margin: 0 20px;
+  padding: 18px;
   text-align: center;
 }
 
 .btn {
   margin-bottom: 5px;
   margin-left: 20px;
-}*/
+}
+
+button {
+  margin: 10px 0 0 10px;
+}
 
 .example-form {
   min-width: 150px;
@@ -52,17 +56,8 @@ p {
   width: 100%;
 }
 
-.half-width {
-  width: 50%;
-}
-
 .full-width {
   width: 100%;
-}
-
-.example-card {
-  display: flex;
-  padding: 0;
 }
 
 mat-form-field mat-label {

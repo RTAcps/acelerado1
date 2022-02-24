@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'soma',
+  selector: 'app-soma',
   templateUrl: './soma.component.html',
   styleUrls: ['./soma.component.css'],
 })
@@ -10,6 +10,8 @@ export class SomaComponent {
   second: number | undefined;
 
   total: number | undefined;
+
+  public isActive: boolean = false;
 
   soma(): void {
     if (this.first === undefined || this.second === undefined) {
@@ -23,5 +25,9 @@ export class SomaComponent {
     this.first = undefined;
     this.second = undefined;
     this.total = undefined;
+  }
+
+  mudar(): void {
+    this.isActive = !this.isActive;
   }
 }

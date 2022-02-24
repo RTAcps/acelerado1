@@ -1,49 +1,84 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <input type="number" name="first" [(ngModel)]="first" />
+<div>
+  <button
+    mat-button
+    color="accent"
+    [style.color]="isActive ? '#ff9100' : '#00aa9b'"
+    (click)="mudar()"
+  >
+    Mudar cores dos botões
+  </button>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-evenly start">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>1º valor: </mat-label>
+      <input
+        matInput
+        type="number"
+        id="myNumber1"
+        name="first"
+        [(ngModel)]="first"
+      />
+    </mat-form-field>
+  </div>
+  <mat-input-container>
+    <div>
       <p>+</p>
-      <input type="number" name="second" [(ngModel)]="second" />
+    </div>
+  </mat-input-container>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>2º valor: </mat-label>
+      <input
+        matInput
+        type="number"
+        id="myNumber2"
+        name="second"
+        [(ngModel)]="second"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="soma()"
+      id="somar"
+      [style.backgroundColor]="isActive ? '#008080' : '#ff9100'"
+      [style.transitionDuration]="'1s'"
+    >
+      SOMAR
+    </button>
+
+    <div [hidden]="!total">
       <button
-        type="button"
-        (click)="soma()"
-        class="btn btn-outline-success btn-sm"
-      >
-        SOMAR
-      </button>
-      <button
-        type="button"
+        mat-raised-button
+        color="warn"
         (click)="limpar()"
-        class="btn btn-outline-danger btn-sm"
+        id="limpar"
+        [style.backgroundColor]="isActive ? '#ff6347' : '#006eb4'"
+        [style.transitionDuration]="'1s'"
       >
         LIMPAR
       </button>
-
-      <mat-divider></mat-divider>
-
-      <mat-grid-list cols="5" rowHeight="2:1">
-        <mat-grid-tile> 1 </mat-grid-tile>
-        <mat-grid-tile> 2 </mat-grid-tile>
-        <mat-grid-tile> 3 </mat-grid-tile>
-        <mat-grid-tile> 4 </mat-grid-tile>
-      </mat-grid-list>
-
-      <div [hidden]="!total">
-        <mat-card class="example-card">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Resultado: </mat-label>
-            <input
-              matInput
-              type="text"
-              [ngModel]="total"
-              (ngModelChange)="total = $event.target"
-              aria-label="Toggle ngHide"
-              disabled="disabled"
-            />
-            <mat-divider></mat-divider>
-          </mat-form-field>
-        </mat-card>
-      </div>
     </div>
   </div>
+</div>
+
+<div [hidden]="!total">
+  <mat-card class="example-card">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Resultado: </mat-label>
+      <input
+        matInput
+        type="text"
+        [ngModel]="total"
+        (ngModelChange)="total = $event.target"
+        aria-label="Toggle ngHide"
+        disabled="disabled"
+      />
+      <mat-divider></mat-divider>
+    </mat-form-field>
+  </mat-card>
 </div>
