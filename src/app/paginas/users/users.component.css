@@ -1,3 +1,42 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 24px;
+
+  margin: 0;
+}
+
+.container {
+  -webkit-box-shadow: 9px 9px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 9px 9px 20px 0px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+}
+
 .mat-form-field {
   margin-right: 12px;
+}
+
+.example-card {
+  max-width: auto;
+}
+
+.example-card:hover {
+  background-color: #ff9100;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.example-header-image {
+  -webkit-box-shadow: 6px 6px 20px 0px rgb(255, 255, 255);
+  background-size: cover;
+  box-shadow: 6px 6px 20px 0px rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas: "card" "card";
+    grid-gap: 24px;
+  }
 }

@@ -31,15 +31,24 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ToolbarComponent } from './paginas/toolbar/toolbar.component';
+import { UserService } from './paginas/users/user.service';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './paginas/login/login.component';
+import { AuthenticationComponent } from './paginas/authentication/authentication.component';
+import { httpInterceptorProviders } from './shared';
 @NgModule({
   declarations: [
     AppComponent,
     SomaComponent,
     HomeComponent,
-    UsersComponent,
+    LoginComponent,
     ToolbarComponent,
+    UsersComponent,
+    AuthenticationComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -65,8 +74,9 @@ import { ToolbarComponent } from './paginas/toolbar/toolbar.component';
     LayoutModule,
     MatSidenavModule,
     MatListModule,
+    RouterModule,
   ],
-  providers: [],
+  providers: [UserService, httpInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

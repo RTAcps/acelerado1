@@ -1,21 +1,23 @@
 <mat-toolbar color="primary" [style.backgroundColor]="'#006EB4'">
-  <mat-toolbar-row>
-    <a mat-button href="/">
+  <mat-toolbar-row [style.padding]="0">
+    <a mat-button [routerLink]="'/home'">
       <img
         _ngcontent-cfi-c15=""
         alt="logo"
         src="https://raw.githubusercontent.com/wizsolucoes/angular-white-label-schematic/master/docs/logowiz.png"
       />
     </a>
-    <span [style.fontSize]="'15px'">
-      <a mat-button href="/"> SOMA </a>
+    <span>
+      <a mat-button [routerLink]="'/soma'">SOMA</a>
     </span>
-    <span [style.fontSize]="'15px'"> <a mat-button href="/">USUÁRIOS</a></span>
+    <span> <a mat-button [routerLink]="'/users'">USUÁRIOS</a></span>
 
     <span class="example-spacer"></span>
-    <a mat-button href="/">
-      <span [style.fontSize]="'15px'">logout </span>
-      <span class="material-icons"> logout </span>
+    <a mat-button [routerLink]="'/login'">
+      <span>Logout </span>
+      <span class="material-icons">logout</span>
     </a>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<router-outlet></router-outlet>

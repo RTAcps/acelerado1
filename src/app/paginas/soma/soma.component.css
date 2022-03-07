@@ -5,13 +5,13 @@ body {
 }
 
 .container {
-  align-items: top;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  height: 50vh;
+  height: 5vh;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 40px 0;
   width: 100vw;
 }
 
@@ -63,4 +63,21 @@ button {
 mat-form-field mat-label {
   padding-right: 3px;
   padding-left: 3px;
+}
+
+/* default and hover color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ff9100;
+}
+
+/* focused color */
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline-thick {
+  color: #b1b1b1;
+}
+
+/* floating label color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: #ff9100;
 }

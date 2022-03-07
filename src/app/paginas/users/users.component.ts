@@ -1,27 +1,20 @@
-import { Component } from '@angular/core';
-//import { PageEvent } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+
+import { UserService } from '../users/user.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent {
-  // MatPaginator Inputs
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+export class UsersComponent implements OnInit {
+  users: any[] | undefined;
 
-  // MatPaginator Output
-  //pageEvent: PageEvent;
+  constructor(private userService: UserService) {}
 
-  constructor() {}
-
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    if (setPageSizeOptionsInput) {
-      this.pageSizeOptions = setPageSizeOptionsInput
-        .split(',')
-        .map((str) => +str);
-    }
+  ngOnInit(): void {
+    this.userService
+      .listarUsers()
+      .subscribe((resposta) => (this.users = resposta.data));
   }
 }

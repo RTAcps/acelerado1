@@ -1,84 +1,92 @@
-<div>
-  <button
-    mat-button
-    color="accent"
-    [style.color]="isActive ? '#ff9100' : '#00aa9b'"
-    (click)="mudar()"
-  >
-    Mudar cores dos botões
-  </button>
-</div>
+<app-toolbar></app-toolbar>
 
-<div fxLayout="row" fxLayoutAlign="space-evenly start">
-  <div>
-    <mat-form-field appearance="outline">
-      <mat-label>1º valor: </mat-label>
-      <input
-        matInput
-        type="number"
-        id="myNumber1"
-        name="first"
-        [(ngModel)]="first"
-      />
-    </mat-form-field>
-  </div>
-  <mat-input-container>
+<div class="container">
+  <mat-grid-list cols="1" rowHeight="1:1" [style.top]="'100px'">
     <div>
-      <p>+</p>
-    </div>
-  </mat-input-container>
-  <div>
-    <mat-form-field appearance="outline">
-      <mat-label>2º valor: </mat-label>
-      <input
-        matInput
-        type="number"
-        id="myNumber2"
-        name="second"
-        [(ngModel)]="second"
-      />
-    </mat-form-field>
-  </div>
-  <div>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="soma()"
-      id="somar"
-      [style.backgroundColor]="isActive ? '#008080' : '#ff9100'"
-      [style.transitionDuration]="'1s'"
-    >
-      SOMAR
-    </button>
-
-    <div [hidden]="!total">
       <button
-        mat-raised-button
-        color="warn"
-        (click)="limpar()"
-        id="limpar"
-        [style.backgroundColor]="isActive ? '#ff6347' : '#006eb4'"
-        [style.transitionDuration]="'1s'"
+        mat-button
+        color="accent"
+        [style.color]="isActive ? '#ff9100' : '#00aa9b'"
+        (click)="mudar()"
       >
-        LIMPAR
+        Mudar cores dos botões
       </button>
     </div>
-  </div>
-</div>
 
-<div [hidden]="!total">
-  <mat-card class="example-card">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Resultado: </mat-label>
-      <input
-        matInput
-        type="text"
-        [ngModel]="total"
-        (ngModelChange)="total = $event.target"
-        aria-label="Toggle ngHide"
-        disabled="disabled"
-      />
-      <mat-divider></mat-divider>
-    </mat-form-field>
-  </mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-evenly start">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>1º valor: </mat-label>
+          <input
+            matInput
+            type="number"
+            id="myNumber1"
+            name="first"
+            [(ngModel)]="first"
+          />
+        </mat-form-field>
+      </div>
+      <mat-input-container>
+        <div>
+          <p>+</p>
+        </div>
+      </mat-input-container>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>2º valor: </mat-label>
+          <input
+            matInput
+            type="number"
+            id="myNumber2"
+            name="second"
+            [(ngModel)]="second"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="soma()"
+          id="somar"
+          [style.backgroundColor]="isActive ? '#00aa9b' : '#ff9100'"
+          [style.transitionDuration]="'0.85s'"
+          [style.bottom]="'10px'"
+        >
+          SOMAR
+        </button>
+
+        <div [hidden]="!total">
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="limpar()"
+            id="limpar"
+            [style.backgroundColor]="isActive ? '#ff9100' : '#00aa9b'"
+            [style.transitionDuration]="'0.85s'"
+            [style.bottom]="'10px'"
+          >
+            LIMPAR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div [hidden]="!total">
+      <mat-card class="example-card">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Resultado: </mat-label>
+          <input
+            matInput
+            type="text"
+            [ngModel]="total"
+            (ngModelChange)="total = $event.target"
+            aria-label="Toggle ngHide"
+            disabled="disabled"
+          />
+          <mat-divider></mat-divider>
+        </mat-form-field>
+      </mat-card>
+    </div>
+  </mat-grid-list>
 </div>

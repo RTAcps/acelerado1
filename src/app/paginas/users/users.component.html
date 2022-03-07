@@ -1,35 +1,32 @@
-<mat-form-field appearance="fill">
-  <mat-label>List length</mat-label>
-  <input matInput [(ngModel)]="length" type="number" />
-</mat-form-field>
+<app-toolbar></app-toolbar>
 
-<mat-form-field appearance="fill">
-  <mat-label>Page size</mat-label>
-  <input matInput [(ngModel)]="pageSize" type="number" />
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Page size options</mat-label>
-  <input
-    matInput
-    [ngModel]="pageSizeOptions"
-    (ngModelChange)="setPageSizeOptions($event)"
-    [ngModelOptions]="{ updateOn: 'blur' }"
-    placeholder="Ex. 10,25,50"
-  />
-</mat-form-field>
-
-<!--mat-paginator
-  [length]="length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  (page)="pageEvent = $event"
-  aria-label="Select page"
->
-</mat-paginator>
-
-<div *ngIf="pageEvent">
-  <h5>Page Change Event Properties</h5>
-   div>List length: {{ pageEvent.length }}</!->
-  <div>Page size: {{ pageEvent.pageSize }}</div>
-  <div>Page index: {{ pageEvent.pageIndex }}</div>
-</div-->
+<main [ngStyle]="{ padding: '40px' }">
+  <mat-spinner
+    *ngIf=""
+    color="warn"
+    [ngStyle]="{ margin: 'auto' }"
+  ></mat-spinner>
+  <mat-grid-list cols="2" rowHeight="6:1">
+    <mat-grid-tile class="wrapper" *ngFor="let user of users">
+      <div [ngStyle]="{ padding: '16px' }" class="container">
+        <mat-card class="example-card card">
+          <mat-card-header>
+            <div
+              mat-card-avatar
+              class="example-header-image img"
+              [ngStyle]="{
+                'background-image': 'url(\' ' + user.avatar + '\')'
+              }"
+            ></div>
+            <mat-card-title>
+              {{ user.first_name }} {{ user.last_name }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ user.email }}
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</main>

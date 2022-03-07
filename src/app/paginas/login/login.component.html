@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <div class="container">
+    <h1>Login</h1>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <div class="example-container form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            class="form-control input"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@example.com"
+            [(ngModel)]="login.email"
+            required
+          />
+          <mat-error *ngIf="email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input
+            class="form-control input"
+            matInput
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="off"
+            [(ngModel)]="login.password"
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+          <mat-error *ngIf="password.invalid">{{
+            getPasswordErrorMessage()
+          }}</mat-error>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            [style.color]="'#a7a7a7'"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <button
+          mat-raised-button
+          color="primary"
+          id="logar"
+          type="submit"
+          [style.backgroundColor]="'#ff9100'"
+          [style.transitionDuration]="'1s'"
+        >
+          ENTRAR
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
