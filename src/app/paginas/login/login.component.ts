@@ -30,7 +30,11 @@ export class LoginComponent {
 
       console.log(result);
 
+<<<<<<< HEAD
       this.router.navigate(['']);
+=======
+      this.router.navigate(['/home']);
+>>>>>>> ef3b8ed (Resolve as rotas)
     } catch (error) {
       console.error(error);
     }
