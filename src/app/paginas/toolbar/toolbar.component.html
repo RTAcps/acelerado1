@@ -13,7 +13,7 @@
     <span> <a mat-button [routerLink]="'/users'">USUÁRIOS</a></span>
 
     <span class="example-spacer"></span>
-    <a mat-button routerLink="/login">
+    <a mat-button routerLink="/login" (click)="logout()">
       <span>Logout </span>
       <span class="material-icons">logout</span>
     </a>

@@ -5,9 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AccountService } from 'src/app/shared/account.service';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,6 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private accountService: AccountService,
     private loginService: LoginService,
     private router: Router
   ) {}
@@ -43,7 +43,14 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    if (this.form.invalid) {
+    if (!!this.form.invalid) {
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Ocorreu um erro, verifique o e-mail ou a senha!',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+      });
+
       return;
     }
 
@@ -55,7 +62,7 @@ export class LoginComponent {
         next: (val) => {
           console.log('val', val);
 
-          this.loginService.isLoggedIn = true;
+          this.loginService.storageToken(val.token);
 
           this.router.navigate(['/home']);
         },

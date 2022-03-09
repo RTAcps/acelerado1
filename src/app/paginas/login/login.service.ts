@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class LoginService {
-  isLoggedIn = false;
-
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
@@ -19,8 +17,21 @@ export class LoginService {
       password,
     });
   }
+
+  storageToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  getAuthorizationToken() {
+    const token = window.localStorage.getItem('token');
+    return token;
+  }
+
+  clearToken(): void {
+    localStorage.removeItem('token');
+  }
 }
 
-interface LoginResponse {
+export interface LoginResponse {
   token: string;
 }

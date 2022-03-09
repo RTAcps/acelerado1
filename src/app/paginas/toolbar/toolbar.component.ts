@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,5 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
+
+  logout(): void {
+    this.loginService.clearToken();
+    this.router.navigate(['/login']);
+  }
 }
