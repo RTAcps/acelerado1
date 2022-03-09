@@ -1,7 +1,15 @@
-<div class="wrapper">
+<div class="wrapper" id="formContent">
   <div class="container">
-    <h1>Login</h1>
-    <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="header">
+      <h1>
+        Login
+        <span>Login</span>
+        <span>Login</span>
+        <span>Wiz</span>
+      </h1>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="example-container form-group">
         <mat-form-field appearance="outline">
           <mat-label>E-mail</mat-label>
@@ -11,13 +19,22 @@
             type="email"
             name="email"
             id="email"
+            formControlName="email"
             placeholder="email@example.com"
-            [(ngModel)]="login.email"
             required
           />
-          <mat-error *ngIf="email.invalid">{{
-            getEmailErrorMessage()
-          }}</mat-error>
+          <mat-error
+            *ngIf="
+              email && email.invalid && email.errors && email.errors['required']
+            "
+            >E-mail Obrigatório</mat-error
+          >
+          <mat-error
+            *ngIf="
+              email && email.invalid && email.errors && email.errors['email']
+            "
+            >E-mail Inválido</mat-error
+          >
         </mat-form-field>
       </div>
 
@@ -30,14 +47,21 @@
             type="password"
             name="password"
             id="password"
-            autocomplete="off"
-            [(ngModel)]="login.password"
+            formControlName="password"
+            autocomplete="on"
             [type]="hide ? 'password' : 'text'"
             required
           />
-          <mat-error *ngIf="password.invalid">{{
-            getPasswordErrorMessage()
-          }}</mat-error>
+          <mat-error
+            *ngIf="
+              password &&
+              password.invalid &&
+              password.errors &&
+              password.errors['required']
+            "
+            >Senha Obrigatória</mat-error
+          >
+
           <button
             mat-icon-button
             matSuffix
@@ -57,10 +81,10 @@
           color="primary"
           id="logar"
           type="submit"
+          data-test="submit"
           [style.backgroundColor]="'#ff9100'"
-          [style.transitionDuration]="'1s'"
         >
-          ENTRAR
+          {{ loginButtonMessage }}
         </button>
       </div>
     </form>

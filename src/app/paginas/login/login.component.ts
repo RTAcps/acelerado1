@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AccountService } from 'src/app/shared/account.service';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,48 +15,57 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  login = {
-    email: '',
-    password: '',
-  };
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-
-  password = new FormControl('', [Validators.required]);
+  loginErrorMessage: string | undefined;
+  loginButtonMessage = 'Entrar';
 
   hide = true;
 
   formLogin: any = FormGroup;
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
-  async onSubmit() {
-    try {
-      const result = await this.accountService.login(this.login);
-
-      console.log(result);
-
-<<<<<<< HEAD
-      this.router.navigate(['']);
-=======
-      this.router.navigate(['/home']);
->>>>>>> ef3b8ed (Resolve as rotas)
-    } catch (error) {
-      console.error(error);
-    }
+  get email(): AbstractControl | null {
+    return this.form.get('email');
   }
 
-  getEmailErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'E-mail obrigatório!';
-    }
-    return this.email.hasError('email') ? 'E-mail inválido' : '';
+  get password(): AbstractControl | null {
+    return this.form.get('password');
   }
 
-  getPasswordErrorMessage() {
-    if (this.password.hasError('required')) {
-      return 'Senha obrigatória!';
+  onSubmit(): void {
+    if (this.form.invalid) {
+      return;
     }
-    return this.password.hasError('senha') ? 'Senha inválida' : '';
+
+    this.loginButtonMessage = 'Entrando';
+
+    this.loginService
+      .login(this.form.value.email, this.form.value.password)
+      .subscribe({
+        next: (val) => {
+          console.log('val', val);
+
+          this.loginService.isLoggedIn = true;
+
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.log('err', err);
+
+          this.loginErrorMessage = 'Erro ao realizar o login, tente novamente.';
+
+          this.loginButtonMessage = 'Entrar';
+        },
+      });
   }
 }

@@ -57,6 +57,7 @@ export class AccountService {
     if (!token) {
       return false;
     } else if (this.isTokenExpired(token)) {
+      window.localStorage.clear();
       return false;
     }
     return true;

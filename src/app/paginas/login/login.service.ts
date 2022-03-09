@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -10,12 +9,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class LoginService {
+  isLoggedIn = false;
+
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${environment.api}/api/login`, {
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${environment.api}/api/login`, {
       email,
       password,
     });
   }
+}
+
+interface LoginResponse {
+  token: string;
 }
