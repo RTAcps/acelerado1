@@ -1,4 +1,8 @@
-<mat-toolbar color="primary" [style.backgroundColor]="'#006EB4'">
+<mat-toolbar
+  color="primary"
+  [style.backgroundColor]="'#006EB4'"
+  *ngIf="mostrarMenu"
+>
   <mat-toolbar-row [style.padding]="0">
     <a mat-button routerLink="/home">
       <img
