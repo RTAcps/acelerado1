@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
 
 import { SomaComponent } from './soma.component';
 
-fdescribe('SomaComponent', () => {
+describe('SomaComponent', () => {
   let component: SomaComponent;
   let fixture: ComponentFixture<SomaComponent>;
   let template: HTMLElement;
@@ -10,6 +11,7 @@ fdescribe('SomaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SomaComponent],
+      imports: [AppModule],
     }).compileComponents();
   });
 
@@ -25,12 +27,16 @@ fdescribe('SomaComponent', () => {
   });
 
   it('should have a login form', () => {
-    expect(template.querySelector('button[data-test="mudar"]')).toBeTruthy;
-    expect(template.querySelector('button[data-test="somar"]')).toBeTruthy;
-    expect(template.querySelector('button[data-test="limpar"]')).toBeTruthy;
-    expect(template.querySelector('input[data-test="firstValue"]')).toBeTruthy;
-    expect(template.querySelector('input[data-test="secondValue"]')).toBeTruthy;
-    expect(template.querySelector('input[data-test="result"]')).toBeTruthy;
+    expect(template.querySelector('button[data-test="mudar"]')).toBeTruthy();
+    expect(template.querySelector('button[data-test="somar"]')).toBeTruthy();
+    expect(template.querySelector('button[data-test="limpar"]')).toBeTruthy();
+    expect(
+      template.querySelector('input[data-test="firstValue"]')
+    ).toBeTruthy();
+    expect(
+      template.querySelector('input[data-test="secondValue"]')
+    ).toBeTruthy();
+    expect(template.querySelector('input[data-test="result"]')).toBeTruthy();
   });
 
   describe('#soma', () => {
@@ -48,23 +54,35 @@ fdescribe('SomaComponent', () => {
   describe('#limpar', () => {
     it('should undefined first, second and total', () => {
       //Given
-      component.first = undefined;
-      component.second = undefined;
+      component.first = 1;
+      component.second = 1;
+      component.total = 2;
       //When
       component.limpar();
       //Then
-      expect(component.total).toEqual(undefined);
+      expect(component.first).toBeUndefined();
+      expect(component.second).toBeUndefined();
+      expect(component.total).toBeUndefined();
     });
   });
 
   describe('#mudar', () => {
-    it('should change mudar', () => {
+    it('should be true', () => {
       //Given
       component.isActive = false;
       //When
       component.mudar();
       //Then
-      expect(component.total).toBeTrue;
+      expect(component.isActive).toBeTrue();
+    });
+
+    it('should be false', () => {
+      //Given
+      component.isActive = true;
+      //When
+      component.mudar();
+      //Then
+      expect(component.isActive).toBeFalse();
     });
   });
 });
