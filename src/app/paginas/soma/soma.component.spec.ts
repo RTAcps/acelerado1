@@ -5,6 +5,7 @@ import { SomaComponent } from './soma.component';
 fdescribe('SomaComponent', () => {
   let component: SomaComponent;
   let fixture: ComponentFixture<SomaComponent>;
+  let template: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,11 +16,21 @@ fdescribe('SomaComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SomaComponent);
     component = fixture.componentInstance;
+    template = fixture.nativeElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a login form', () => {
+    expect(template.querySelector('button[data-test="mudar"]')).toBeTruthy;
+    expect(template.querySelector('button[data-test="somar"]')).toBeTruthy;
+    expect(template.querySelector('button[data-test="limpar"]')).toBeTruthy;
+    expect(template.querySelector('input[data-test="firstValue"]')).toBeTruthy;
+    expect(template.querySelector('input[data-test="secondValue"]')).toBeTruthy;
+    expect(template.querySelector('input[data-test="result"]')).toBeTruthy;
   });
 
   describe('#soma', () => {
