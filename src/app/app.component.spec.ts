@@ -24,7 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './paginas/home/home.component';
 import { UsersComponent } from './paginas/users/users.component';
@@ -33,7 +33,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ToolbarComponent } from './paginas/toolbar/toolbar.component';
 import { UserService } from './paginas/users/user.service';
-import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './paginas/login/login.component';
 import { AuthenticationComponent } from './paginas/authentication/authentication.component';
@@ -72,16 +72,15 @@ describe('AppComponent', () => {
         MatProgressSpinnerModule,
         MatRippleModule,
         MatToolbarModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         MatNativeDateModule,
         FlexLayoutModule,
         LayoutModule,
         MatSidenavModule,
         MatListModule,
-        RouterModule,
+        RouterTestingModule,
       ],
       providers: [UserService, httpInterceptorProviders],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -91,12 +90,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('should have the router-outlet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'projeto1 app is running!'
-    );
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
