@@ -54,20 +54,20 @@ export class LoginComponent {
       return;
     }
 
-    this.loginButtonMessage = 'Entrando';
+    this.loginButtonMessage = 'Entrando...';
 
     this.loginService
       .login(this.form.value.email, this.form.value.password)
       .subscribe({
         next: (val) => {
-          console.log('val', val);
+          //console.log('val', val);
 
           this.loginService.storageToken(val.token);
 
           this.router.navigate(['/home']);
         },
         error: (err) => {
-          console.log('err', err);
+          //console.log('err', err);
 
           this.loginErrorMessage = 'Erro ao realizar o login, tente novamente.';
 
